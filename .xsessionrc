@@ -1,0 +1,7 @@
+#!/bin/bash
+
+picom &
+nitrogen --restore&
+slstatus&
+setxkbmap -layout us -option ctrl:swapcaps&
+#dwmstatus&
