@@ -96,11 +96,14 @@ static const char *colorname[] = {
 	"#073642",
 #endif
 	"#dc322f",
-	"#859900",
-	"#b58900",
-	"#268bd2",
+	//"#859900",
+	"#718b34",
+	"#928945",
+	//"#268bd2",
+	"#2555a1",
 	"#d33682",
-	"#2aa198",
+	//"#2aa198",
+	"#20a0d7",
 #ifdef LIGHT
 	"#073642",
 #else
@@ -113,7 +116,7 @@ static const char *colorname[] = {
 #else
 	"#021419",
 #endif
-	"#cb4b16",
+	"#8c2c3b",
 #ifdef LIGHT
 	"#93a1a1",
 #else

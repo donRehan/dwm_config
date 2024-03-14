@@ -1,3 +1,6 @@
+# My dwm config
+![](dwm.png "Config Screenshot")
+
 ```c
 static const char *dmenucmd[] = { "dmenu_run", "-c" , "-l" , "10" , "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 ```
@@ -47,7 +50,16 @@ I bind modkey shift s to flameshot gui to take screen shots as such
 ```c
 { MODKEY|ShiftMask,             XK_s,  spawn, SHCMD("flameshot gui") },
 ```
+## Added battery status 
+Using slstatus Now battery percentage is shown alongside its state wether 
+its charging or not. This is shown by a little socket unicode character 
+that I added in components/battery.c and removing the other states.
 
+then adding the following in config.h for slstatus
+```c
+	{ battery_state, "[%s ",  "BAT0"},
+	{ battery_perc, "🔋%s%]",  "BAT0"},
+```
 
 # Old documentation 
 ### In this location create the following file
