@@ -61,6 +61,48 @@ then adding the following in config.h for slstatus
 	{ battery_perc, "🔋%s%]",  "BAT0"},
 ```
 
+## Addition of keyboard layout changing 
+
+This is done by creating the folder called scripts_lab inside of it is 
+change_keyboard_layout.sh
+
+Below is the shell script and its explaination
+
+```bash 
+#! /bin/bash
+
+export layout=$(setxkbmap -query | awk 'NR == 3 {print $2}')
+
+if [[ $layout == "us" ]]; then
+    setxkbmap -layout ar -option ctrl:swapcaps
+elif [[ $layout == "ar" ]]; then
+	setxkbmap -layout us -option ctrl:swapcaps
+fi
+```
+using setxkbmap -query I get something similar to the following
+
+```
+rules:      evdev
+model:      pc105
+layout:     us
+options:    ctrl:swapcaps
+```
+in the third line is the layout currently active.
+Hence pipelining the output to awk NR == 3 returns the third line
+IE layout : us
+here I want to capture only us I do so using print $2 
+from there I use if else statement to call method to switch the 
+keyboard layout
+
+In my config.h I have the following set up where I call the script each
+time I use the key combination that I chose for it.
+```c
+{ MODKEY|ShiftMask,             XK_Tab, spawn,          SHCMD("$HOME/dev/scripts_lab/change_keyboard_layout.sh") },
+```
+
+Finally in slstatus I also added a section to report the keyboard 
+layout being used so it gives a natural wm feel in dwm.
+
 # Old documentation 
 ### In this location create the following file
 > /usr/share/xsessions 

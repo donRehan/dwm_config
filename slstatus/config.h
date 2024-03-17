@@ -65,6 +65,7 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
+	{ keymap , "[%s]" , NULL},
 	{ battery_state, "[%s ",  "BAT0"},
 	{ battery_perc, "🔋%s%]",  "BAT0"},
 	{ run_command, " [ %s%] ", "pulsemixer --get-volume | awk {'print $1'}" },
@@ -73,5 +74,5 @@ static const struct arg args[] = {
 	{ cpu_perc, "[  %s%] ", 	 NULL},
 	{ ram_perc, "[%s%, ",  NULL},
 	{ ram_used, "%sB] ",      NULL },
-	{ datetime, "%s",  "[  %a, %d %b, %Y] [%r] "},
+	{ datetime, "%s",  "[  %a, %d %b, %Y | %r] "},
 };
