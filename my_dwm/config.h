@@ -2,8 +2,8 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 3;        /* gaps between windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 2;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -16,6 +16,7 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 //static const char col_cyan[]        = "#005577";
 static const char col_cyan[]        = "#6D4079";
+//static const char col_cyan[]        = "#073642";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -32,7 +33,10 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1<<1,       0,           -1 },
+	{ "TelegramDesktop",  NULL,       NULL,       1<<3,       0,           -1 },
+	{ "TradingView",  NULL,       NULL,       1<<2,       0,           -1 },
+	{ "discord",  NULL,       NULL,       1<<4,       0,           -1 },
 };
 
 /* layout(s) */
@@ -67,6 +71,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-c" ,"-l" , "10", "-m", dmenumon
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 
+#include "shiftview.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -82,6 +87,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,              XK_equal,          shiftview,  { .i = +1 } },
+	{ MODKEY,              XK_minus,           shiftview,  { .i = -1 } },
 	{ MODKEY,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
