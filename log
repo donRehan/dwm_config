@@ -1,3 +1,7 @@
 Add pertag patch
 Add rules (open apps in certain tags)
 Add shiftview patch to give ease in shifting to different tags
+Add fullgaps instead of useless gap and remove the reset key
+Use gnome-screenshot as my screenshot manager
+	Add their respective key bindings
+	Used xev to find the name of print key for normal screenshot
