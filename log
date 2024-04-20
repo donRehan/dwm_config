@@ -5,3 +5,4 @@ Add fullgaps instead of useless gap and remove the reset key
 Use gnome-screenshot as my screenshot manager
 	Add their respective key bindings
 	Used xev to find the name of print key for normal screenshot
+Add muted sound status using a custom script and link it to dwm bar
