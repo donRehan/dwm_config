@@ -6,3 +6,4 @@ Use gnome-screenshot as my screenshot manager
 	Add their respective key bindings
 	Used xev to find the name of print key for normal screenshot
 Add muted sound status using a custom script and link it to dwm bar
+Add Arabic support for dwm bar (now Arabic text is readable in it)
