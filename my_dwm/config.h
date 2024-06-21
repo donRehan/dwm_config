@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2.5;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -17,20 +17,17 @@ static const int attachbelow = 1;    /* 1 means attach after the currently activ
 //static const char *fonts[]          = { "monospace:size=12" };
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
-//static const char col_gray1[]       = "#222222";
-static const char col_gray1[]       = "#404040";
-//static const char col_gray1[]       = "#000000";
+static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
-//static const char col_gray3[]       = "#FFFFFF";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-//static const char col_cyan[]        = "#005577";
 static const char col_cyan[]        = "#6D4079";
 static const char border_col[]        = "#bbbbbb";
-//static const char col_cyan[]        = "#073642";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	// Theme for Systray
+	[SchemeSys] = { col_gray3, col_gray3, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan ,  border_col  },
 };
 
@@ -43,11 +40,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	//{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",  NULL,       NULL,       1<<1,       0,           -1 },
 	{ "TelegramDesktop",  NULL,       NULL,       1<<3,       0,           -1 },
 	{ "TradingView",  NULL,       NULL,       1<<2,       0,           -1 },
 	{ "discord",  NULL,       NULL,       1<<4,       0,           -1 },
+	{ "slack",  NULL,       NULL,       1<<8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -78,7 +76,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-c" ,"-l" , "10", "-m", dmenumon, "-fn", dmenufont, "-nb", "#222222", "-nf", "#bbbbbb" , "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c" ,"-l" , "10", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 
@@ -128,6 +126,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY,             XK_e, spawn,          SHCMD("$HOME/.config/emacs/bin/doom run") },
 	{ MODKEY|ShiftMask,             XK_e, spawn,          SHCMD("$HOME/dev/scripts_lab/close_dwm.sh") },
 	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
