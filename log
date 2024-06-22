@@ -9,3 +9,6 @@ Add muted sound status using a custom script and link it to dwm bar
 Add Arabic support for dwm bar (now Arabic text is readable in it)
 Turn off resize hints respect to fix bug in border pixels with terminals
 like the gnome-terminal
+Add systray patch && connect to wifi gui using nm-applet
+Add battery applet && remove battery from slstatus
+Add Border color property
